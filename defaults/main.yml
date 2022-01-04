@@ -71,8 +71,8 @@ bbb_ssl_cert: "/etc/letsencrypt/live/{{ bbb_hostname }}/fullchain.pem"
 bbb_ssl_key: "/etc/letsencrypt/live/{{ bbb_hostname }}/privkey.pem"
 # Set `bbb_letsencrypt_enable: false` to deploy custom certificate and private
 # key files.
-bbb_own_cert: undefined
-bbb_own_key: undefined
+# bbb_own_cert:
+# bbb_own_key:
 
 bbb_meteor: {}
 bbb_html5_backend_processes: 2
