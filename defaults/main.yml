@@ -17,7 +17,7 @@ bbb_coturn_port_tls: 3443
 bbb_coturn_server: "{{ bbb_hostname }}"
 bbb_coturn_min_port: 49152
 bbb_coturn_max_port: 65535
-#bbb_coturn_secret: "" <- undefined to set as required
+bbb_coturn_secret: "kateb_coturn_super_secret"
 
 bbb_turn_enable: true
 bbb_stun_servers:
@@ -35,7 +35,7 @@ bbb_turn_servers:
     secret: "{{ bbb_coturn_secret }}"
     tls: true
 
-bbb_greenlight_enable: true
+bbb_greenlight_enable: false
 bbb_greenlight_users: []
 #  - { name: '', email: '', password: '', type: 'user' }
 #  - { name: '', email: '', password: '', type: 'admin' }
@@ -56,15 +56,15 @@ bbb_freeswitch_external_ip: "stun:{{ (bbb_stun_servers | first).server }}"
 bbb_freeswitch_muted_sound: true
 bbb_freeswitch_unmuted_sound: true
 # bbb_freeswitch_socket_password needs to be defined by the User
-# bbb_freeswitch_socket_password: "SuperSecurePassword-123456789"
-# bbb_freeswitch_default_password: "Needs_To_Be_Defined_By_The_User"
+bbb_freeswitch_socket_password: "KatebSuperSecurePassword-123456789"
+bbb_freeswitch_default_password: "KatebSuperSecurePassword-123456789"
 
 bbb_system_locale: en_US.UTF-8
 bbb_mongodb_version: 4.2
 
 # Attention, needs to be encoded with "native2ascii -encoding UTF8"
-bbb_default_welcome_message: Welcome to <b>%%CONFNAME%%</b>!<br><br>For help on using BigBlueButton see these (short) <a href="https://www.bigbluebutton.org/html5"><u>tutorial videos</u></a>.<br><br>To join the audio bridge click the phone button.  Use a headset to avoid causing background noise for others.
-bbb_default_welcome_message_footer: This server is running <a href="https://docs.bigbluebutton.org/" target="_blank"><u>BigBlueButton</u></a>.
+bbb_default_welcome_message: \u0645\u0631\u062d\u0628\u0627\u064b \u0628\u0643\u0645 \u0641\u064a <b> \u0645\u0646\u0635\u0629 \u0627\u0644\u0643\u0627\u062a\u0628 </b>!<br><br>\u0644\u0644\u0645\u0633\u0627\u0639\u062f\u0629 \u0641\u064a \u0627\u0633\u062a\u062e\u062f\u0627\u0645 \u0641\u0635\u0648\u0644 \u0627\u0644\u0643\u0627\u062a\u0628 \u064a\u0645\u0643\u0646\u0643\u0645 \u0627\u0644\u0625\u0637\u0644\u0627\u0639 \u0639\u0644\u0649 \u0647\u0630\u0627   <a href="https://kateb.co"><u>\u0627\u0644\u0641\u064a\u062f\u064a\u0648 \u0627\u0644\u0642\u0635\u064a\u0631 </u></a>.<br><br>\u0644\u062a\u0641\u0639\u064a\u0644 \u0627\u0644\u0635\u0648\u062a \u064a\u0645\u0643\u0646\u0643\u0645 \u0627\u0644\u0636\u063a\u0637 \u0639\u0644\u0649 \u0639\u0644\u0627\u0645\u0629 \u0627\u0644\u0633\u0645\u0627\u0639\u0629 \u0627\u0633\u0641\u0644 \u0627\u0644\u0635\u0641\u062d\u0629.  \u064a\u0641\u0636\u0644 \u0627\u0633\u062a\u062e\u062f\u0627\u0645 \u0633\u0645\u0627\u0639\u0629 \u0644\u0645\u0646\u0639 \u0627\u0644\u0636\u062c\u064a\u062c \u0648\u0635\u0648\u062a \u0627\u0644\u0635\u062f\u0627.
+bbb_default_welcome_message_footer: \u0647\u0630\u0627 \u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u0625\u0641\u062a\u0631\u0627\u0636\u064a \u064a\u0639\u0645\u0644 \u0628\u0648\u0627\u0633\u0637\u0629  <a href="https://kateb.co" target="_blank"><u>\u0645\u0646\u0635\u0629 \u0627\u0644\u0643\u0627\u062a\u0628</u></a>.
 bbb_web_logouturl: default
 bbb_allow_request_without_session: false
 bbb_ssl_cert: "/etc/letsencrypt/live/{{ bbb_hostname }}/fullchain.pem"
@@ -97,10 +97,10 @@ bbb_monitoring_all_in_one_grafana: true
 bbb_monitoring_all_in_one_prometheus: true
 # bbb_monitoring_htpasswd_user:
 # bbb_monitoring_htpasswd:
-bbb_monitoring_external: false
+bbb_monitoring_external: true
 bbb_monitoring_exporter_version: "{{ 'latest' if bbb_monitoring_all_in_one_enable | bool else 'HEAD' }}"
 
-bbb_monitoring_systemd_enable: false
+bbb_monitoring_systemd_enable: true
 bbb_monitoring_systemd_directory: "/opt/bigbluebutton-exporter"
 bbb_monitoring_systemd_bind_ip: 0.0.0.0
 bbb_monitoring_systemd_port: 9688
@@ -123,13 +123,13 @@ bbb_ntp_cron_hour: "5"
 bbb_ntp_cron_minute: "0"
 
 bbb_cron_history: 5
-bbb_cron_unrecorded_days: 14
-bbb_cron_published_days: 14
+bbb_cron_unrecorded_days: 1
+bbb_cron_published_days: 7
 bbb_cron_log_history: 28
 
 
 # additional bbb-web.properties
-bbb_default_presentation: "${bigbluebutton.web.serverURL}/{{ bbb_custom_presentation_name | default('default.pdf') }}"
+bbb_default_presentation: "https://storage.googleapis.com/vclass_share/default.pdf"
 # bbb_custom_presentation: "default.pdf"
 # set this to the name the default presentation on the host should have.
 # if its not default.pdf moderators are able to delete the default presentation. Thats sometimes helpful and works fine.
@@ -138,7 +138,7 @@ bbb_default_presentation: "${bigbluebutton.web.serverURL}/{{ bbb_custom_presenta
 bbb_mute_on_start: false
 # ALWAYS_ACCEPT, ALWAYS_DENY, ASK_MODERATOR
 bbb_guestpolicy: ALWAYS_ACCEPT
-bbb_default_max_users: 0
+bbb_default_max_users: 45
 bbb_default_meeting_duration: 0
 bbb_max_num_pages: 200
 bbb_max_file_size_upload: 30000000
@@ -156,7 +156,7 @@ bbb_user_activity_sign_response_delay: 5
 bbb_learning_dashboard_enabled: true
 
 bbb_use_default_logo: false
-bbb_default_logo_url: '${bigbluebutton.web.serverURL}/images/logo.png'
+bbb_default_logo_url: 'https://storage.googleapis.com/vclass_share/Kateb%20logo.png'
 
 bbb_etherpad_disable_cursortrace_plugin: false
 
