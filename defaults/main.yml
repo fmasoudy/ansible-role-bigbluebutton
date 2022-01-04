@@ -17,7 +17,7 @@ bbb_coturn_port_tls: 3443
 bbb_coturn_server: "{{ bbb_hostname }}"
 bbb_coturn_min_port: 49152
 bbb_coturn_max_port: 65535
-bbb_coturn_secret: "kateb_coturn_super_secret"
+bbb_coturn_secret: 5acde724c2bdf1f93fe3ea69f052b2f6
 
 bbb_turn_enable: true
 bbb_stun_servers:
