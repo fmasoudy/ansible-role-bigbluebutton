@@ -74,7 +74,30 @@ bbb_ssl_key: "/etc/letsencrypt/live/{{ bbb_hostname }}/privkey.pem"
 # bbb_own_cert:
 # bbb_own_key:
 
-bbb_meteor: {}
+bbb_meteor:
+  public:
+    app:
+      skipCheck: true
+    kurento:
+      cameraProfiles:
+        - id: low
+          name: Low quality
+          default: false
+          bitrate: 30
+        - id: medium
+          name: Medium quality
+          default: true
+          bitrate: 50
+        - id: high
+          name: High quality
+          default: false
+          bitrate: 100
+        - id: hd
+          name: High definition
+          default: false
+          bitrate: 100
+    media:
+      sipjsHackViaWs: false
 bbb_html5_backend_processes: 2
 bbb_html5_frontend_processes: 2
 
