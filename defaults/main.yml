@@ -98,8 +98,8 @@ bbb_meteor:
           bitrate: 100
     media:
       sipjsHackViaWs: false
-bbb_html5_backend_processes: 2
-bbb_html5_frontend_processes: 2
+bbb_html5_backend_processes: 4
+bbb_html5_frontend_processes: 4
 
 bbb_disable_recordings: false
 bbb_recording_config: {}
