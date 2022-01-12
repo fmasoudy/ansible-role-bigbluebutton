@@ -102,7 +102,10 @@ bbb_html5_backend_processes: 4
 bbb_html5_frontend_processes: 4
 
 bbb_disable_recordings: false
-bbb_recording_config: {}
+bbb_recording_config:
+  video_formats:
+    - webm
+    - mp4
 bbb_dialplan_quality: "cdquality"
 bbb_dialplan_energy_level: 100
 bbb_dialplan_comfort_noise: 1400

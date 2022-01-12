@@ -76,6 +76,12 @@
     regexp: 'ws://'
     replace: 'wss://'
 
+- name: set custom html5 page title
+  replace:
+    path: /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
+    regexp: 'clientTitle: BigBlueButton'
+    replace: 'clientTitle: Kateb Edu'
+
 - name: configure custom recording config
   block:
     - name: read recording config
@@ -170,3 +176,9 @@
     mode: '0755'
     owner: root
     group: root
+
+- name: replace favicon.ico
+  copy:
+    src: favicon.ico
+    dest: /var/www/bigbluebutton-default/favicon.ico
+    force: yes
