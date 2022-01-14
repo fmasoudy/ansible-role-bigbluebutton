@@ -182,3 +182,22 @@
     src: favicon.ico
     dest: /var/www/bigbluebutton-default/favicon.ico
     force: yes
+
+- name: Set timezone to Asia/Riyadh
+  timezone:
+    name: Asia/Riyadh
+
+- name: copy shutdown script
+  copy:
+    src: bbb-shutdown-script.sh
+    dest: /usr/local/sbin/bbb-shutdown-script.sh
+    mode: +x
+    force: yes
+
+- name: ensure shutdown cron jod is present
+  when: inventory_hostname not in ['fsl01.kateb.co', 'fsl40.kateb.co']
+  cron:
+    name: "bbb shutdown script"
+    minute: "00"
+    hour: "18"
+    job: "/bin/bash /usr/local/sbin/bbb-shutdown-script.sh"
